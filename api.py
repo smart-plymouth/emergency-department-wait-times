@@ -6,8 +6,6 @@ from flask import jsonify
 
 
 app = Flask(__name__)
-
-
 BUCKET = "aggregator-nhs-ed-wait-times-data"
 
 

@@ -14,8 +14,16 @@ provider:
 functions:
   api:
     handler: wsgi_handler.handler
+    memorySize: 128
+    timeout: 20
     events:
       - httpApi: '*'
+  cron-collector:
+    handler: collector_uphnt_derriford.main
+    memorySize: 128
+    timeout: 60
+    events:
+      - schedule: rate(5 minutes)
 
 plugins:
   - serverless-wsgi
