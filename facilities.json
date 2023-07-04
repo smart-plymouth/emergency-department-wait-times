@@ -5,6 +5,8 @@
       "id": "102b6f1d-8898-4910-99f0-c5d2d449f5d3",
       "name": "Derriford Hospital Emergency Department",
       "nhs_trust": "University Hospitals Plymouth NHS Trust",
+      "address": "Derriford Hospital, Derriford Road, Crownhill, Plymouth, Devon, PL6 8DH",
+      "telephone": "01752 245012",
       "type": "Urgent Care",
       "longitude": 50.41680,
       "latitude": -4.11330,
