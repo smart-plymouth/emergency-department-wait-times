@@ -4,11 +4,12 @@ frameworkVersion: '3'
 
 custom:
   wsgi:
-    app: app.app
+    app: api.app
 
 provider:
   name: aws
-  runtime: python3.9
+  runtime: python3.10
+  region: eu-west-1
 
 functions:
   api:

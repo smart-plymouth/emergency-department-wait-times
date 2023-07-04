@@ -1,0 +1,14 @@
+{
+  "last_updated": "2023-07-04T20:55:00Z",
+  "facilities": [
+    {
+      "id": "102b6f1d-8898-4910-99f0-c5d2d449f5d3",
+      "name": "Derriford Hospital Emergency Department",
+      "nhs_trust": "University Hospitals Plymouth NHS Trust",
+      "type": "Urgent Care",
+      "longitude": 50.41680,
+      "latitude": -4.11330,
+      "url": "https://www.plymouthhospitals.nhs.uk/urgent-waiting-times"
+    }
+  ]
+}
