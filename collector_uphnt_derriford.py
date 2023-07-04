@@ -42,7 +42,11 @@ def write_data(data):
         logging.error('%s' % str(exc))
         todays_data = []
         todays_data.append(data)
-        client.put_object(Body=json.dumps(todays_data), Bucket=BUCKET, Key=file)
+        client.put_object(
+            Body=json.dumps(todays_data),
+            Bucket=BUCKET,
+            Key=file
+        )
 
 
 def fetch_data(
@@ -55,7 +59,7 @@ def fetch_data(
 
 def extract_data(content):
     logging.info("Extracting wait time data")
-    soup = BeautifulSoup(content, "lxml")
+    soup = BeautifulSoup(content, "html.parser")
     raw = soup.find_all("span", {"class": "data-number"})
     return {
         'longest_wait': int(raw[0].text),
