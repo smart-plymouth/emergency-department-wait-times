@@ -10,11 +10,13 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
       - name: Update Packages
         run: |
           sudo apt-get update -y
           sudo apt-get upgrade -y
-          sudo apt-get install python3
       - name: Install Serverless
         run: |
           sudo curl -o- -L https://slss.io/install | bash
