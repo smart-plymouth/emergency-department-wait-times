@@ -1,131 +1,69 @@
-<!--
-title: 'Serverless Framework Python Flask API on AWS'
-description: 'This template demonstrates how to develop and deploy a simple Python Flask API running on AWS Lambda using the traditional Serverless Framework.'
-layout: Doc
-framework: v3
-platform: AWS
-language: Python
-priority: 2
-authorLink: 'https://github.com/serverless'
-authorName: 'Serverless, inc.'
-authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
--->
+# Emergency Department Wait Time Aggregator
 
-# Serverless Framework Python Flask API on AWS
+This service aggregates wait time data from Plymouth University Hospitals NHS Trust and makes the 
+time series data available via an API. Wait times are retrieved from https://www.plymouthhospitals.nhs.uk/urgent-waiting-times
+by a Lambda function which scrapes the contents of the page, this is triggered every 5 minutes by Event Bridge.
+Retrieved data is stored within an S3 bucket and then served by an API also hosted via Lambda and API Gateway.
 
-This template demonstrates how to develop and deploy a simple Python Flask API service running on AWS Lambda using the traditional Serverless Framework.
+## API Endpoint
+* https://sjwnchdg79.execute-api.eu-west-1.amazonaws.com/
 
+## API Routes
+### /facilities
+Returns a list of facilities which are monitored.
 
-## Anatomy of the template
+#### Example Request
+```curl 'https://sjwnchdg79.execute-api.eu-west-1.amazonaws.com/facilities' | jq```
 
-This template configures a single function, `api`, which is responsible for handling all incoming requests thanks to configured `httpApi` events. To learn more about `httpApi` event configuration options, please refer to [httpApi event docs](https://www.serverless.com/framework/docs/providers/aws/events/http-api/). As the events are configured in a way to accept all incoming requests, `Flask` framework is responsible for routing and handling requests internally. The implementation takes advantage of `serverless-wsgi`, which allows you to wrap WSGI applications such as Flask apps. To learn more about `serverless-wsgi`, please refer to corresponding [GitHub repository](https://github.com/logandk/serverless-wsgi). Additionally, the template relies on `serverless-python-requirements` plugin for packaging dependencies from `requirements.txt` file. For more details about `serverless-python-requirements` configuration, please refer to corresponding [GitHub repository](https://github.com/UnitedIncome/serverless-python-requirements).
-
-## Usage
-
-### Prerequisites
-
-In order to package your dependencies locally with `serverless-python-requirements`, you need to have `Python3.9` installed locally. You can create and activate a dedicated virtual environment with the following command:
-
-```bash
-python3.9 -m venv ./venv
-source ./venv/bin/activate
+#### Example Response
 ```
-
-Alternatively, you can also use `dockerizePip` configuration from `serverless-python-requirements`. For details on that, please refer to corresponding [GitHub repository](https://github.com/UnitedIncome/serverless-python-requirements).
-
-### Deployment
-
-This example is made to work with the Serverless Framework dashboard, which includes advanced features such as CI/CD, monitoring, metrics, etc.
-
-In order to deploy with dashboard, you need to first login with:
-
+{
+  "facilities": [
+    {
+      "address": "Derriford Hospital, Derriford Road, Crownhill, Plymouth, Devon, PL6 8DH",
+      "id": "102b6f1d-8898-4910-99f0-c5d2d449f5d3",
+      "latitude": -4.1133,
+      "longitude": 50.4168,
+      "name": "Derriford Hospital Emergency Department",
+      "nhs_trust": "University Hospitals Plymouth NHS Trust",
+      "telephone": "01752 245012",
+      "type": "Emergency Department",
+      "url": "https://www.plymouthhospitals.nhs.uk/urgent-waiting-times"
+    },
+    {
+      "address": "Cumberland Centre, Damerell Close, Devonport, Plymouth, Devon, PL1 4JZ",
+      "id": "f228431b-2d19-4f83-b318-19180934834c",
+      "latitude": -4.16884,
+      "longitude": 50.36999,
+      "name": "Cumberland Centre",
+      "nhs_trust": "University Hospitals Plymouth NHS Trust",
+      "telephone": "01752 434400",
+      "type": "Urgent Treatment Centre",
+      "url": "https://www.plymouthhospitals.nhs.uk/urgent-waiting-times"
+    },
+    {
+      "address": "Tavistock Hospital, Springhill, Tavistock, Devon, PL19 8LD",
+      "id": "cc2ba4fc-aab9-414c-bf46-875f838fd567",
+      "latitude": -4.15372,
+      "longitude": 50.54724,
+      "name": "Tavistock Minor Injuries Unit",
+      "nhs_trust": "University Hospitals Plymouth NHS Trust",
+      "telephone": "01752 434390",
+      "type": "Minor Injuries Unit",
+      "url": "https://www.plymouthhospitals.nhs.uk/urgent-waiting-times"
+    },
+    {
+      "address": "South Hams Hospital, Plymouth Road, Kingsbridge, Devon, TQ7 1AT",
+      "id": "0941bcf6-194f-4ad7-b7b7-9e0d6b18cdd5",
+      "latitude": -3.78142,
+      "longitude": 50.28938,
+      "name": "Kingsbridge Minor Injuries Unit",
+      "nhs_trust": "University Hospitals Plymouth NHS Trust",
+      "telephone": "01548 852349",
+      "type": "Minor Injuries Unit",
+      "url": "https://www.plymouthhospitals.nhs.uk/urgent-waiting-times"
+    }
+  ],
+  "last_updated": "2023-07-05T12:01:00Z"
+}
 ```
-serverless login
-```
-
-install dependencies with:
-
-```
-npm install
-```
-
-and
-
-```
-pip install -r requirements.txt
-```
-
-and then perform deployment with:
-
-```
-serverless deploy
-```
-
-After running deploy, you should see output similar to:
-
-```bash
-Deploying aws-python-flask-api-project to stage dev (us-east-1)
-
-✔ Service deployed to stack aws-python-flask-api-project-dev (182s)
-
-endpoint: ANY - https://xxxxxxxx.execute-api.us-east-1.amazonaws.com
-functions:
-  api: aws-python-flask-api-project-dev-api (1.5 MB)
-```
-
-_Note_: In current form, after deployment, your API is public and can be invoked by anyone. For production deployments, you might want to configure an authorizer. For details on how to do that, refer to [httpApi event docs](https://www.serverless.com/framework/docs/providers/aws/events/http-api/).
-
-### Invocation
-
-After successful deployment, you can call the created application via HTTP:
-
-```bash
-curl https://xxxxxxx.execute-api.us-east-1.amazonaws.com/dev/
-```
-
-Which should result in the following response:
-
-```
-{"message":"Hello from root!"}
-```
-
-Calling the `/hello` path with:
-
-```bash
-curl https://xxxxxxx.execute-api.us-east-1.amazonaws.com/dev/hello
-```
-
-Should result in the following response:
-
-```bash
-{"message":"Hello from path!"}
-```
-
-If you try to invoke a path or method that does not have a configured handler, e.g. with:
-
-```bash
-curl https://xxxxxxx.execute-api.us-east-1.amazonaws.com/dev/nonexistent
-```
-
-You should receive the following response:
-
-```bash
-{"error":"Not Found!"}
-```
-
-### Local development
-
-Thanks to capabilities of `serverless-wsgi`, it is also possible to run your application locally, however, in order to do that, you will need to first install `werkzeug` dependency, as well as all other dependencies listed in `requirements.txt`. It is recommended to use a dedicated virtual environment for that purpose. You can install all needed dependencies with the following commands:
-
-```bash
-pip install werkzeug
-pip install -r requirements.txt
-```
-
-At this point, you can run your application locally with the following command:
-
-```bash
-serverless wsgi serve
-```
-
-For additional local development capabilities of `serverless-wsgi` plugin, please refer to corresponding [GitHub repository](https://github.com/logandk/serverless-wsgi).
