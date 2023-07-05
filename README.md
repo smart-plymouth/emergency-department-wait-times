@@ -75,7 +75,7 @@ Optionally start and end query string args may be sent with the request to reque
 e.g. ?start=2023-07-05&end=2023-07-05
 
 #### Example Request
-```curl --location --request GET 'https://sjwnchdg79.execute-api.eu-west-1.amazonaws.com/facilities/f228431b-2d19-4f83-b318-19180934834c' | jq```
+```curl 'https://sjwnchdg79.execute-api.eu-west-1.amazonaws.com/facilities/f228431b-2d19-4f83-b318-19180934834c' | jq```
 
 #### Example Response
 ```
