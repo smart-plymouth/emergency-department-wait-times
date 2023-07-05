@@ -93,7 +93,9 @@ def main(ctx, evt):
             logging.info("Cumberland Centre Data: %s" % data)
             write_data(facility_id, data)
         except Exception as err:
-            logging.error("Error processing Cumberland Centre data: %s" % str(err))
+            logging.error(
+                "Error processing Cumberland Centre data: %s" % str(err)
+            )
 
         # Handle Tavistock Minor Injuries Data
         try:
@@ -106,7 +108,9 @@ def main(ctx, evt):
             logging.info("Tavistock MIU Data: %s" % data)
             write_data(facility_id, data)
         except Exception as err:
-            logging.error("Error processing Tavistock MIU data: %s" % str(err))
+            logging.error(
+                "Error processing Tavistock MIU data: %s" % str(err)
+            )
 
         # Handle Kingsbridge Minor Injuries Data
         try:
@@ -119,7 +123,9 @@ def main(ctx, evt):
             logging.info("Kingsbridge MIU Data: %s" % data)
             write_data(facility_id, data)
         except Exception as err:
-            logging.error("Error processing Kingsbridge MIU data: %s" % str(err))
+            logging.error(
+                "Error processing Kingsbridge MIU data: %s" % str(err)
+            )
 
         logging.info("Complete")
     except Exception as e:
