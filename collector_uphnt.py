@@ -78,7 +78,7 @@ def main(ctx, evt):
                 'patients_in_department': int(raw[2].text)
             }
             logging.info("Derriford Data: %s" % data)
-            # write_data(facility_id, data)
+            write_data(facility_id, data)
         except Exception as err:
             logging.error("Error processing Derriford data: %s" % str(err))
 
@@ -91,7 +91,7 @@ def main(ctx, evt):
                 'patients_in_department': int(raw[5].text)
             }
             logging.info("Cumberland Centre Data: %s" % data)
-            # write_data(facility_id, data)
+            write_data(facility_id, data)
         except Exception as err:
             logging.error("Error processing Cumberland Centre data: %s" % str(err))
 
@@ -104,7 +104,7 @@ def main(ctx, evt):
                 'patients_in_department': int(raw[8].text)
             }
             logging.info("Tavistock MIU Data: %s" % data)
-            # write_data(facility_id, data)
+            write_data(facility_id, data)
         except Exception as err:
             logging.error("Error processing Tavistock MIU data: %s" % str(err))
 
@@ -117,7 +117,7 @@ def main(ctx, evt):
                 'patients_in_department': int(raw[11].text)
             }
             logging.info("Kingsbridge MIU Data: %s" % data)
-            # write_data(facility_id, data)
+            write_data(facility_id, data)
         except Exception as err:
             logging.error("Error processing Kingsbridge MIU data: %s" % str(err))
 
