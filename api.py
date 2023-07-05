@@ -1,9 +1,11 @@
 import boto3
 import json
 import datetime
+import dateutil
 
 from flask import Flask
 from flask import jsonify
+from flask import request
 
 
 app = Flask(__name__)
@@ -66,15 +68,40 @@ def get_facility(facility_id):
     facility = get_facility_by_id(facility_id)
 
     if not facility:
-        return 'Not Found', 404
+        return jsonify(
+            {
+                'error': 'Not Found',
+                'status': 404,
+                'message': 'Facility not found.'
+            }
+        ), 400
 
     facility['data'] = []
 
-    # By default get last 24 hours of readings...
     now = datetime.datetime.utcnow()
-    start_date = now - datetime.timedelta(hours=24)
-    end_date = now
-    data = get_data_by_range(facility_id, start_date, end_date)
+
+    start = request.args.get('start')
+    if start:
+        start_dt = dateutil.parser.parse(start)
+    else:
+        start_dt = now - datetime.timedelta(hours=24)
+
+    end = request.args.get('end')
+    if end:
+        end_dt = dateutil.parser.parse(end)
+    else:
+        end_dt = now
+
+    if end_dt < start_dt:
+        return jsonify(
+            {
+                'error': 'Bad Request',
+                'status': 400,
+                'message': 'End date must be after start date.'
+            }
+        ), 400
+
+    data = get_data_by_range(facility_id, start_dt, end_dt)
     facility['data'].append(data)
 
     return jsonify(facility)

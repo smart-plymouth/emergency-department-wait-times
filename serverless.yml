@@ -19,7 +19,7 @@ functions:
     events:
       - httpApi: '*'
   cron-collector:
-    handler: collector_uphnt_derriford.main
+    handler: collector_uphnt.main
     memorySize: 128
     timeout: 20
     events:
