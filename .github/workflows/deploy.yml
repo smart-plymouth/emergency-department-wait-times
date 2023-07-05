@@ -14,6 +14,7 @@ jobs:
         run: |
           sudo apt-get update -y
           sudo apt-get upgrade -y
+          sudo apt-get install python3
       - name: Install Serverless
         run: |
           sudo curl -o- -L https://slss.io/install | bash
