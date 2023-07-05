@@ -1,6 +1,6 @@
 requests==2.31.0
 bs4==0.0.1
 Flask==1.1.4
-Werkzeug==1.0.1
+Werkzeug==2.3.6
 markupsafe==2.0.1
 boto3==1.27.0
