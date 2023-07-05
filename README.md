@@ -68,7 +68,6 @@ Returns a list of facilities which are monitored.
 }
 ```
 
-## API Routes
 ### /facilities/<facility_id>
 Returns the facility meta-data and time series data. Longest wait times are provided in minutes.
 Optionally start and end query string args may be sent with the request to request a custom date range of data using ISO formatted dates.
