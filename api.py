@@ -36,15 +36,18 @@ def get_data_by_range(facility_id, start_date, end_date):
 
 
 def get_data_by_date(facility_id, date):
-    s3 = boto3.resource('s3')
-    obj = s3.Object(BUCKET, '%s/%s/%s/%s.json' % (
-        facility_id,
-        date.year,
-        date.month,
-        date.day
-    ))
-    data = json.loads(obj.get()['Body'].read().decode('utf-8'))
-    return data
+    try:
+        s3 = boto3.resource('s3')
+        obj = s3.Object(BUCKET, '%s/%s/%s/%s.json' % (
+            facility_id,
+            date.year,
+            date.month,
+            date.day
+        ))
+        data = json.loads(obj.get()['Body'].read().decode('utf-8'))
+        return data
+    except Exception:
+        return []
 
 
 @app.route("/")

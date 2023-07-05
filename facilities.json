@@ -11,6 +11,39 @@
       "longitude": 50.41680,
       "latitude": -4.11330,
       "url": "https://www.plymouthhospitals.nhs.uk/urgent-waiting-times"
+    },
+    {
+      "id": "f228431b-2d19-4f83-b318-19180934834c",
+      "name": "Cumberland Centre",
+      "nhs_trust": "University Hospitals Plymouth NHS Trust",
+      "address": "Cumberland Centre, Damerell Close, Devonport, Plymouth, Devon, PL1 4JZ",
+      "telephone": "01752 434400",
+      "type": "Urgent Treatment Centre",
+      "longitude": 50.36999,
+      "latitude": -4.16884,
+      "url": "https://www.plymouthhospitals.nhs.uk/urgent-waiting-times"
+    },
+    {
+      "id": "cc2ba4fc-aab9-414c-bf46-875f838fd567",
+      "name": "Tavistock Minor Injuries Unit",
+      "nhs_trust": "University Hospitals Plymouth NHS Trust",
+      "address": "Tavistock Hospital, Springhill, Tavistock, Devon, PL19 8LD",
+      "telephone": "01752 434390",
+      "type": "Minor Injuries Unit",
+      "longitude": 50.54724,
+      "latitude": -4.15372,
+      "url": "https://www.plymouthhospitals.nhs.uk/urgent-waiting-times"
+    },
+    {
+      "id": "0941bcf6-194f-4ad7-b7b7-9e0d6b18cdd5",
+      "name": "Kingsbridge Minor Injuries Unit",
+      "nhs_trust": "University Hospitals Plymouth NHS Trust",
+      "address": "South Hams Hospital, Plymouth Road, Kingsbridge, Devon, TQ7 1AT",
+      "telephone": "01548 852349",
+      "type": "Minor Injuries Unit",
+      "longitude": 50.28938,
+      "latitude": -3.78142,
+      "url": "https://www.plymouthhospitals.nhs.uk/urgent-waiting-times"
     }
   ]
 }
