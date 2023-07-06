@@ -18,6 +18,10 @@ functions:
     timeout: 20
     events:
       - httpApi: '*'
+    cors:
+      origin: '*'
+      headers:
+        - Content-Type
   cron-collector:
     handler: collector_uphnt.main
     memorySize: 128
