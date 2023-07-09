@@ -6,14 +6,14 @@ by a Lambda function which scrapes the contents of the page, this is triggered e
 Retrieved data is stored within an S3 bucket and then served by an API also hosted via Lambda and API Gateway.
 
 ## API Endpoint
-* https://sjwnchdg79.execute-api.eu-west-1.amazonaws.com/
+* https://emergency-department-wait-times.api.smartplymouth.org/
 
 ## API Routes
 ### /facilities
 Returns a list of facilities which are monitored.
 
 #### Example Request
-```curl 'https://sjwnchdg79.execute-api.eu-west-1.amazonaws.com/facilities' | jq```
+```curl 'https://emergency-department-wait-times.api.smartplymouth.org/facilities' | jq```
 
 #### Example Response
 ```
@@ -75,7 +75,7 @@ Optionally start and end query string args may be sent with the request to reque
 e.g. ?start=2023-07-05&end=2023-07-05
 
 #### Example Request
-```curl 'https://sjwnchdg79.execute-api.eu-west-1.amazonaws.com/facilities/f228431b-2d19-4f83-b318-19180934834c' | jq```
+```curl 'https://emergency-department-wait-times.api.smartplymouth.org/facilities/f228431b-2d19-4f83-b318-19180934834c' | jq```
 
 #### Example Response
 ```
