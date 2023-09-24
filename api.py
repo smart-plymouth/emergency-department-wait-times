@@ -108,6 +108,6 @@ def get_facility(facility_id):
         ), 400
 
     data = get_data_by_range(facility_id, start_dt, end_dt)
-    facility['data'].append(data)
+    facility['data'].extend(data)
 
     return jsonify(facility)
