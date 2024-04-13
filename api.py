@@ -111,3 +111,7 @@ def get_facility(facility_id):
     facility['data'].extend(data)
 
     return jsonify(facility)
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', threaded=True, debug=False)
