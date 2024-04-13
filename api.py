@@ -2,6 +2,7 @@ import boto3
 import json
 import datetime
 import dateutil
+import atexit
 
 from flask import Flask
 from flask import jsonify
@@ -9,6 +10,15 @@ from flask import request
 
 from flask_cors import CORS
 
+from apscheduler.schedulers.background import BackgroundScheduler
+
+from collector_uphnt import run_collector
+
+
+scheduler = BackgroundScheduler()
+scheduler.add_job(func=run_collector, trigger="interval", seconds=300)
+scheduler.start()
+atexit.register(lambda: scheduler.shutdown())
 
 app = Flask(__name__)
 CORS(app)

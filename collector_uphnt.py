@@ -63,7 +63,7 @@ def extract_data(content):
     return raw
 
 
-def main(ctx, evt):
+def run_collector():
     try:
         logging.info("Extracting UHPNT Urgent Wait Times")
         content = fetch_data()
@@ -133,4 +133,4 @@ def main(ctx, evt):
 
 
 if __name__ == '__main__':
-    main({}, {})
+    run_collector()
